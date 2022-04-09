@@ -13,12 +13,13 @@ services:
     image: minio/minio:latest
     ports:
      - "9000:9000"
+     - "9001:9001"
     environment:
       - "MINIO_ACCESS_KEY=mlflow_access_key"
       - "MINIO_SECRET_KEY=mlflow_secret_key"
     volumes: 
       - minio_data:/data
-    command: server /data
+    command: server /data --console-address ":9001"
 
   mlflow:
     build:
